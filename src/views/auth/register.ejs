@@ -1,0 +1,105 @@
+<%- include("../partials/header", { title: "Register" }) %>
+
+<section class="vh-100">
+  <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="row w-100">
+      <div class="col-md-6 offset-md-3">
+        <div class="card shadow p-4">
+          <h3 class="text-center mb-4">Create Account</h3>
+
+          <!-- REGISTER FORM -->
+          <form action="/register" method="POST">
+            <!-- First name -->
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                name="firstName"
+                class="form-control form-control-lg"
+                placeholder="First Name"
+                required
+              />
+              <label class="form-label">First Name</label>
+            </div>
+
+            <!-- Last name -->
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                name="lastName"
+                class="form-control form-control-lg"
+                placeholder="Last Name"
+                required
+              />
+              <label class="form-label">Last Name</label>
+            </div>
+
+            <!-- Email -->
+            <div class="form-outline mb-4">
+              <input
+                type="email"
+                name="email"
+                class="form-control form-control-lg"
+                placeholder="Email address"
+                required
+              />
+              <label class="form-label">Email address</label>
+            </div>
+
+            <!-- Password -->
+            <div class="form-outline mb-4">
+              <input
+                type="password"
+                name="password"
+                class="form-control form-control-lg"
+                placeholder="Password (min 6 chars)"
+                minlength="6"
+                required
+              />
+              <label class="form-label">Password</label>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-outline mb-4">
+              <input
+                type="password"
+                name="confirmPassword"
+                class="form-control form-control-lg"
+                placeholder="Confirm Password"
+                minlength="6"
+                required
+              />
+              <label class="form-label">Confirm Password</label>
+            </div>
+
+            <!-- Role (optional, chỉ cho admin tạo) -->
+            <!-- <div class="form-outline mb-4">
+              <select name="role" class="form-select">
+                <option value="user" selected>User</option>
+                <option value="admin">Admin</option>
+              </select>
+              <label class="form-label">Role</label>
+            </div> -->
+
+            <!-- Submit -->
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-success btn-lg w-100"
+              >
+                Register
+              </button>
+            </div>
+
+            <!-- Link to login -->
+            <p class="small fw-bold mt-2 pt-1 mb-0 text-center">
+              Already have an account?
+              <a href="/login" class="link-danger">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("../partials/footer") %>
