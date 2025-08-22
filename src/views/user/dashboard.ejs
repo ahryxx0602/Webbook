@@ -1,54 +1,12 @@
-<%- include("../partials/user/userHeader", { title: "User Dashboard" }) %>
+<%- include("./partials/header", { title: "User Dashboard" }) %>
 
 <div id="content-wrapper" class="container mt-4 flex-grow-1">
   <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-3 mb-4">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title"><%= user.firstName %> <%= user.lastName %></h5>
-          <p class="card-text text-muted"><%= user.email %></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Content -->
+    <%- include("./partials/profileSidebar", { user }) %>
     <div class="col-md-9">
-      <div class="card">
-        <div class="card-header">
-          <h5>Update Profile</h5>
-        </div>
-        <div class="card-body">
-          <form action="/update-profile" method="POST">
-            <div class="mb-3">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" name="firstName" value="<%= user.firstName %>" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" name="lastName" value="<%= user.lastName %>" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input 
-                type="email" 
-                class="form-control bg-light text-muted" 
-                id="email" 
-                name="email" 
-                value="<%= user.email %>" 
-                readonly 
-              >
-              <!-- readonly: người dùng không thể chỉnh sửa nhưng vẫn gửi giá trị khi submit -->
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update Profile</button>
-          </form>
-        </div>
-      </div>
+      <%- include("./partials/profileForm", { user }) %>
     </div>
   </div>
 </div>
 
-<%- include("../partials/user/userFooter") %>
+<%- include("./partials/footer") %>

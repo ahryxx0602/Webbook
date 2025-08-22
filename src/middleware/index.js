@@ -1,5 +1,7 @@
 const express = require("express");
 const sessionConfig = require("../config/session");
+const { requireAuth } = require("./requireAuth");
+const requireAdmin = require("./requireAdmin");
 
 const setupMiddleware = (app) => {
   // Body parser
@@ -13,4 +15,8 @@ const setupMiddleware = (app) => {
   sessionConfig(app);
 };
 
-module.exports = setupMiddleware;
+module.exports = {
+  setupMiddleware,
+  requireAuth,
+  requireAdmin,
+};

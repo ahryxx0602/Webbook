@@ -3,7 +3,7 @@ const viewEngine = require("./config/viewEngine");
 const initWebRoutes = require("./routes/index");
 const connectDB = require("./config/connectDB");
 require("dotenv").config();
-const setupMiddleware = require("./middleware");
+const { setupMiddleware } = require("./middleware");
 
 const app = express();
 const port = process.env.PORT || 3000;
