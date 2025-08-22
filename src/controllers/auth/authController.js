@@ -39,9 +39,11 @@ const authController = {
       // Lưu JWT vào cookie
       res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * 60 * 60 });
 
-      res.send(`Xin chào ${user.firstName} ${user.lastName}!
-        Session: ${req.session.user.name}
-        `);
+      if (user.role === "admin") {
+        return res.redirect("/admin"); // Admin -> dashboard admin
+      } else {
+        return res.redirect("/dashboard"); // User -> dashboard user
+      }
     } catch (e) {
       console.log(e);
       res.send(e.message || "Lỗi khi đăng nhập!");

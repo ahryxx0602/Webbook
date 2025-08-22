@@ -1,0 +1,46 @@
+<%- include("./partials/header", { title: "Admin Dashboard" }) %>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <%- include("./partials/sidebar", { active: "dashboard" }) %>
+    <div class="col-md-9">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Chào, <%= adminName %>!</h4>
+          <p class="card-text">Chọn một mục trong sidebar để bắt đầu quản trị hệ thống.</p>
+          <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+              <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Người dùng</h5>
+                  <p class="card-text">Tổng: <%= stats?.users || 0 %></p>
+                  <a href="/admin/users" class="btn btn-light btn-sm">Xem chi tiết</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Sản phẩm</h5>
+                  <p class="card-text">Tổng: <%= stats?.products || 0 %></p>
+                  <a href="/admin/products" class="btn btn-light btn-sm">Xem chi tiết</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card text-white bg-warning h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Đơn hàng</h5>
+                  <p class="card-text">Tổng: <%= stats?.orders || 0 %></p>
+                  <a href="/admin/orders" class="btn btn-light btn-sm">Xem chi tiết</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./partials/footer") %>

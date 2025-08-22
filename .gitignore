@@ -1,5 +1,21 @@
-.vscode
-
-src/public/css/
+# Node modules
 node_modules/
+
+# VSCode settings
+.vscode/
+
+# Env file
+.env
+
+# CSS tạm/thư mục public nếu muốn loại trừ (ví dụ build tự động)
+src/public/css/
+
+# Notes, ghi chú cá nhân
 notes/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

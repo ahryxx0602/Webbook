@@ -1,4 +1,4 @@
-const userService = require("../../services/userService");
+const userService = require("../services/userService");
 
 const userController = {
   getDashboard: async (req, res) => {
@@ -7,7 +7,7 @@ const userController = {
       const userId = req.session.user.id;
       const user = await userService.getUserById(userId);
 
-      res.render("user/dashboard", { user });
+      res.render("user/dashboard", { user, title: "User Dashboard" });
     } catch (err) {
       console.log(err);
       res.redirect("/login");

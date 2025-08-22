@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { requireAuth } = require("../middleware/requireAuth");
-const userController = require("../controllers/User/userController");
+const userController = require("../controllers/userController");
 
 // Trang dashboard/profile user
 // requireAuth để Check dùng cho người dùng đã đăng nhâpj
