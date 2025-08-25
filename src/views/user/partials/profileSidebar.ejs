@@ -1,9 +1,24 @@
 <div class="col-md-3 mb-4">
-	<div class="card shadow-sm">
-	  <div class="card-body text-center">
-		<h5 class="card-title"><%= user.firstName %> <%= user.lastName %></h5>
-		<p class="card-text text-muted"><%= user.email %></p>
-		<a href="/dashboard" class="btn btn-primary btn-sm">Hồ sơ</a>
-	  </div>
-	</div>
+  <div class="card shadow-sm">
+    <div class="card-body text-center">
+      <!-- Avatar -->
+      <img
+        src="<%= currentUser && currentUser.displayAvatar %>"
+        alt="Avatar của <%= (user.firstName || '') + ' ' + (user.lastName || '') %>"
+        class="rounded-circle border mb-2"
+        style="width: 80px; height: 80px; object-fit: cover"
+        width="80"
+        height="80"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
+
+      <h5 class="card-title mb-1">
+        <%= (user.firstName || '') %> <%= (user.lastName || '') %>
+      </h5>
+      <p class="card-text text-muted mb-3"><%= user.email %></p>
+
+      <a href="/profile" class="btn btn-primary btn-sm">Hồ sơ</a>
+    </div>
   </div>
+</div>

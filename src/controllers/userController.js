@@ -1,33 +1,50 @@
+// src/controllers/userController.js
 const userService = require("../services/userService");
 
 const userController = {
-  getDashboard: async (req, res) => {
+  getProfile: async (req, res) => {
     try {
-      // Lấy thông tin user từ session
-      const userId = req.session.user.id;
-      const user = await userService.getUserById(userId);
+      // an toàn hơn: fallback từ req.user nếu middleware đã gán
+      const userId = req.user?.id || req.session.user?.id;
+      if (!userId) return res.redirect("/login");
 
-      res.render("user/dashboard", { user, title: "User Dashboard" });
+      const user = await userService.getUserById(userId);
+      return res.render("user/profile", {
+        user,
+        title: "User Profile",
+        active: "profile",
+      });
     } catch (err) {
-      console.log(err);
-      res.redirect("/login");
+      console.error(err);
+      return res.redirect("/login");
     }
   },
 
   updateProfile: async (req, res) => {
     try {
-      const userId = req.session.user.id;
-      const updatedUser = await userService.updateUserProfile(userId, req.body);
+      const userId = req.user?.id || req.session.user?.id;
+      if (!userId) return res.redirect("/login");
+      const payload = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email, // nếu readonly thì vẫn gửi về giá trị cũ, không sao
+      };
 
-      // Cập nhật lại session
-      req.session.user.firstName = updatedUser.firstName;
-      req.session.user.lastName = updatedUser.lastName;
-      req.session.user.email = updatedUser.email;
+      const updatedUser = await userService.updateUserProfile(userId, payload);
 
-      res.redirect("/dashboard");
+      // Cập nhật lại session (rút gọn bằng spread)
+      req.session.user = {
+        ...req.session.user,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+      };
+
+      // route của bạn đang dùng /profile
+      return res.redirect("/profile");
     } catch (err) {
-      console.log(err);
-      res.send("Lỗi khi cập nhật thông tin!");
+      console.error(err);
+      return res.status(500).send("Lỗi khi cập nhật thông tin!");
     }
   },
 };

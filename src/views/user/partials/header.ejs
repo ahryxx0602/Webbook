@@ -2,17 +2,49 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="/dashboard">EduBook</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <a class="navbar-brand" href="/profile">EduBook</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <a
+            class="nav-link <%= (active === 'dashboard') ? 'active' : '' %>"
+            href="/profile"
+            >Dashboard</a
+          >
         </li>
+
+        <% if (currentUser) { %>
+        <li class="nav-item d-flex align-items-center gap-2 ms-2">
+          <img
+            src="<%= currentUser.displayAvatar %>"
+            alt="avatar"
+            class="rounded-circle border"
+            style="width: 32px; height: 32px; object-fit: cover"
+            width="32"
+            height="32"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <span class="text-white"><%= currentUser.firstName || 'User' %></span>
+        </li>
+        <% } %>
+
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#logoutModal">
+          <button
+            type="button"
+            class="btn btn-outline-light ms-3"
+            data-bs-toggle="modal"
+            data-bs-target="#logoutModal"
+          >
             Đăng xuất
           </button>
         </li>
